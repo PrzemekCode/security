@@ -23,6 +23,11 @@ public class RestController {
                 .orElse(null);
     }
 
+    @GetMapping("userAgent")
+    public String userAgent(HttpServletRequest request) {
+        return request.getHeader("user-agent");
+    }
+
     private String extractIp(HttpServletRequest request) {
         String clientIp;
         String clientXForwardedForIp = request

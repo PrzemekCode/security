@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/oauth/token", "/test")
+                .antMatchers("/oauth/token", "/test", "/userAgent")
                 .permitAll()
                 .anyRequest().
                 authenticated();
