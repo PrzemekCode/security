@@ -4,6 +4,8 @@ import com.example.oauth.fingerprint.IpGeolocationClient;
 import com.example.oauth.model.IpGeolocationResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import ua_parser.Client;
+import ua_parser.Parser;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,6 +23,11 @@ public class RestController {
         return ofNullable(extractIp(request))
                 .map(ipGeolocationClient::findById)
                 .orElse(null);
+    }
+
+    @GetMapping("userAgentClient")
+    public Client userAgentClient(HttpServletRequest request) {
+        return new Parser().parse(request.getHeader("user-agent"));
     }
 
     @GetMapping("userAgent")
