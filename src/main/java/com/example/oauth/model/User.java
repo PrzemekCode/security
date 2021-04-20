@@ -4,12 +4,10 @@ import com.example.oauth.user.UserDTO;
 import lombok.*;
 
 import javax.persistence.*;
-
 import java.util.HashSet;
 import java.util.Set;
 
 import static java.util.Objects.isNull;
-import static java.util.Optional.ofNullable;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -26,8 +24,7 @@ public class User {
     private Long id;
     private String username;
     private String password;
-    @OneToMany(orphanRemoval = true, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "finger_print_id")
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.PERSIST, mappedBy = "user")
     private Set<FingerPrint> fingerPrintSet = new HashSet<>();
 
     public void addFingerPrint(FingerPrint fingerPrint) {

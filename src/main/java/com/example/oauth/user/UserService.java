@@ -35,6 +35,8 @@ public class UserService {
     private void addFingerPrint(User user, HttpServletRequest request) {
         IpGeolocationResponse ipGeolocationResponse = client.findById(extractIp(request));
         Client clientUa = parser.parse(request.getHeader(USER_AGENT_HEADER));
-        user.addFingerPrint(FingerPrint.create(ipGeolocationResponse, clientUa));
+        FingerPrint fingerPrint = FingerPrint.create(ipGeolocationResponse, clientUa);
+        fingerPrint.setUser(user);
+        user.addFingerPrint(fingerPrint);
     }
 }

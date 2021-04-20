@@ -3,10 +3,7 @@ package com.example.oauth.model;
 import lombok.*;
 import ua_parser.Client;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import static java.util.Optional.ofNullable;
 import static javax.persistence.GenerationType.IDENTITY;
@@ -35,6 +32,8 @@ public class FingerPrint {
     private String zip;
     private String lat;
     private String lon;
+    @ManyToOne
+    private User user;
 
     public static FingerPrint create(IpGeolocationResponse ipGeolocationResponse, Client client) {
         return FingerPrint.builder()

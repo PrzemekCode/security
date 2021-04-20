@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/oauth/token", "/test", "/userAgent", "/userAgentClient")
+                .antMatchers("/oauth/token", "/user/register")
                 .permitAll()
                 .anyRequest().
                 authenticated();
@@ -73,7 +73,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    public void configureGlobal(AuthenticationManagerBuilder auth) {
         auth
                 .authenticationProvider(authenticationProvider())
                 .authenticationProvider(customAuthenticationProvider);
