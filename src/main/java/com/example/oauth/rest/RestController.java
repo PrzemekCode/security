@@ -9,6 +9,7 @@ import ua_parser.Parser;
 
 import javax.servlet.http.HttpServletRequest;
 
+import static com.example.oauth.utils.RequestUtils.extractIp;
 import static java.util.Objects.nonNull;
 import static java.util.Optional.ofNullable;
 
@@ -33,17 +34,5 @@ public class RestController {
     @GetMapping("userAgent")
     public String userAgent(HttpServletRequest request) {
         return request.getHeader("user-agent");
-    }
-
-    private String extractIp(HttpServletRequest request) {
-        String clientIp;
-        String clientXForwardedForIp = request
-                .getHeader("x-forwarded-for");
-        if (nonNull(clientXForwardedForIp)) {
-            clientIp = clientXForwardedForIp;
-        } else {
-            clientIp = request.getRemoteAddr();
-        }
-        return clientIp;
     }
 }
